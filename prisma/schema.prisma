@@ -39,17 +39,36 @@ model BlacklistedToken {
 }
 
 model Transaction {
-  id String @id @default(ulid())
-
+  id     String @id @default(ulid())
   user   User   @relation(fields: [userId], references: [id])
   userId String
 
   amount   Int
   currency String
-  status   TransactionStatus
+
+  presentmentAmount   Int?
+  presentmentCurrency String?
+
+  status                TransactionStatus @default(PENDING)
+  stripePaymentStatus   String            @default("")
+  stripePaymentIntentId String?
+  stripeSessionId       String?
+  stripeCustomerEmail   String?
+  stripeCustomerName    String?
+  stripeCountry         String?
+  createdAt             DateTime          @default(now())
+  expiresAt             DateTime?
+
+  orderId String // Dummy order ID
 }
 
 enum TransactionStatus {
-  SUCCESS
+  PENDING
+  COMPLETE
   FAILED
+  CANCELLED
+  REFUNDED
+  REQUIRES_ACTION
+  AUTHORIZED
+  SUCCEEDED
 }

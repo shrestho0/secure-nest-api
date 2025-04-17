@@ -3,3 +3,7 @@ https://stackoverflow.com/questions/65474757/nexus-prisma-how-to-handle-createda
 https://medium.com/@ahureinebenezer/mastering-data-validation-in-nestjs-a-complete-guide-with-class-validator-and-class-transformer-02a029db6ecf
 
 https://docs.nestjs.com/recipes/passport#implementing-passport-jwt
+
+https://medium.com/@kisora.thomas/using-stripe-api-and-webhooks-in-your-nest-app-98ba999a8d8c
+
+https://stackoverflow.com/questions/60254371/authentication-roles-with-guards-decorators-how-to-pass-user-object

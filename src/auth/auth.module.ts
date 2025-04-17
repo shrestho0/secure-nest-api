@@ -9,6 +9,7 @@ import { JwtRefreshStrategy } from './jwt-refresh.strategy';
 import { JwtAccessStrategy } from './jwt-access.strategy';
 import { PrismaService } from 'src/prisma.service';
 import { UserService } from 'src/user/user.service';
+import { RolesGuard } from './roles.guard';
 
 @Module({
   imports: [
@@ -20,6 +21,6 @@ import { UserService } from 'src/user/user.service';
     })
   ], // import to use inside the module
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtAccessStrategy, JwtRefreshStrategy, PrismaService],
+  providers: [AuthService, LocalStrategy, JwtAccessStrategy, JwtRefreshStrategy, PrismaService, RolesGuard],
 })
 export class AuthModule { }

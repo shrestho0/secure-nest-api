@@ -8,13 +8,13 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
     constructor(
-        private readonly authService: AuthService, // Inject the AuthService to use its methods       
+        private readonly authService: AuthService,
     ) {
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
             secretOrKey: process.env.JWT_SECRET as string,
-            passReqToCallback: true, // to access the request object 
+            passReqToCallback: true, // to access the request object from callbacks
         });
 
 
@@ -41,8 +41,6 @@ export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'jwt-refresh'
 
         return user;
 
-
-        // return { userId: payload.sub, username: payload.username, role: payload.role, email: payload.email };
     }
 }
 

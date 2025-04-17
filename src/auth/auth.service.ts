@@ -82,7 +82,7 @@ export class AuthService {
     try {
       await this.prismaService.blacklistedToken.create({ data: { token } })
     } catch (e) {
-      console.log("[DEBUG]: error blacklisting token", e);
+      // console.log("[DEBUG]: error blacklisting token", e);
     }
   }
 

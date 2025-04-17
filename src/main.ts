@@ -2,6 +2,9 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { config } from "dotenv"
+config();
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +16,7 @@ async function bootstrap() {
     })
   )
 
+
   const config = new DocumentBuilder()
     .setTitle('Secure Nest API')
     .setDescription('Some nest api')
@@ -21,7 +25,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document); // http://localhost:3000/api
+  SwaggerModule.setup('swagger', app, document); // http://localhost:3000/api
 
   await app.listen(process.env.PORT ?? 3000);
 }

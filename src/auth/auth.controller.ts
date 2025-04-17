@@ -8,6 +8,9 @@ import { plainToInstance } from "class-transformer";
 import { LoginUserResponseDto } from "./dto/login-user";
 import { UserDto } from "../user/dto/user-dto";
 import { JwtAccessAuthGuard } from "./jwt-access.guard";
+import { Roles } from "./roles.decorator";
+import { Role } from "@prisma/client";
+import { RolesGuard } from "./roles.guard";
 
 
 
@@ -25,6 +28,11 @@ export class AuthController {
     return this.authService.register(registerUserDto)
   }
 
+  /**
+   * Login user
+   * @param req 
+   * @returns LoginUserResponseDto
+   */
   @UseGuards(LocalAuthGuard)
   @Post("/login")
   async login(@Req() req) {
@@ -40,6 +48,12 @@ export class AuthController {
 
   }
 
+
+  /**
+   * Refresh user
+   * @param req 
+   * @returns 
+   */
   @UseGuards(JwtRefreshAuthGuard)
   @Post("/refresh")
   async refresh(@Req() req) {
@@ -63,13 +77,21 @@ export class AuthController {
   }
 
 
-  @UseGuards(JwtAccessAuthGuard)
+
+  /**
+   * Get user info
+   * @param req 
+   * @returns 
+   */
+  @UseGuards(JwtAccessAuthGuard, RolesGuard)
+  // @Roles(Role.USER)
   @Get("/me")
   async getMe(@Req() req) {
     const user = req.user;
     const userActual = await this.authService.validateUserEmail(user.email);
     return plainToInstance(UserDto, userActual);
   }
+
 
 
 }

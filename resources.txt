@@ -1,0 +1,5 @@
+https://stackoverflow.com/questions/65474757/nexus-prisma-how-to-handle-createdat-and-updatedat-with-crud-globally
+
+https://medium.com/@ahureinebenezer/mastering-data-validation-in-nestjs-a-complete-guide-with-class-validator-and-class-transformer-02a029db6ecf
+
+https://docs.nestjs.com/recipes/passport#implementing-passport-jwt
